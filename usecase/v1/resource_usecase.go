@@ -5,8 +5,8 @@ import (
 	"github.com/faizalnurrozi/phincon-browse/domain/view_models"
 	"github.com/faizalnurrozi/phincon-browse/packages/pokeapi-go"
 	"github.com/faizalnurrozi/phincon-browse/usecase"
-	"gitlab.com/s2-backend/packages/functioncaller"
-	"gitlab.com/s2-backend/packages/logruslogger"
+	"github.com/faizalnurrozi/phincon-browse/packages/functioncaller"
+	"github.com/faizalnurrozi/phincon-browse/packages/logruslogger"
 	"strings"
 )
 

@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/basicauth"
-	"gitlab.com/s2-backend/packages/messages"
+	"github.com/faizalnurrozi/phincon-browse/packages/messages"
 	"github.com/faizalnurrozi/phincon-browse/server/http/handlers"
 	"github.com/faizalnurrozi/phincon-browse/usecase"
 	"net/http"

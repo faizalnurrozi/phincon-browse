@@ -11,10 +11,10 @@ import (
 
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gofiber/fiber/v2"
-	"gitlab.com/s2-backend/packages/functioncaller"
-	jwtPkg "gitlab.com/s2-backend/packages/jwt"
-	"gitlab.com/s2-backend/packages/logruslogger"
-	"gitlab.com/s2-backend/packages/messages"
+	"github.com/faizalnurrozi/phincon-browse/packages/functioncaller"
+	jwtPkg "github.com/faizalnurrozi/phincon-browse/packages/jwt"
+	"github.com/faizalnurrozi/phincon-browse/packages/logruslogger"
+	"github.com/faizalnurrozi/phincon-browse/packages/messages"
 )
 
 type JwtMiddleware struct {

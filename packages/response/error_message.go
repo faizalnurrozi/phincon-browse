@@ -3,7 +3,7 @@ package response
 import (
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
-	"gitlab.com/s2-backend/packages/str"
+	"github.com/faizalnurrozi/phincon-browse/packages/str"
 	"reflect"
 	"strings"
 )

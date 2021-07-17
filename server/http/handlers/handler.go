@@ -9,7 +9,7 @@ import (
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
-	"gitlab.com/s2-backend/packages/str"
+	"github.com/faizalnurrozi/phincon-browse/packages/str"
 	"github.com/faizalnurrozi/phincon-browse/domain/view_models"
 )
 

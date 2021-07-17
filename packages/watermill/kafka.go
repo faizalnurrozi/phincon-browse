@@ -5,8 +5,8 @@ import (
 	"github.com/ThreeDotsLabs/watermill"
 	"github.com/ThreeDotsLabs/watermill-kafka/v2/pkg/kafka"
 	"github.com/ThreeDotsLabs/watermill/message"
-	"gitlab.com/s2-backend/packages/functioncaller"
-	"gitlab.com/s2-backend/packages/logruslogger"
+	"github.com/faizalnurrozi/phincon-browse/packages/functioncaller"
+	"github.com/faizalnurrozi/phincon-browse/packages/logruslogger"
 )
 
 type Kafka struct {

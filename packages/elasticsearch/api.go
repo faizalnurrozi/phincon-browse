@@ -5,7 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"github.com/elastic/go-elasticsearch/v7"
-	"gitlab.com/s2-backend/packages/interfacepkg"
+	"github.com/faizalnurrozi/phincon-browse/packages/interfacepkg"
 	"strings"
 )
 

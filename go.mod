@@ -27,7 +27,6 @@ require (
 	github.com/rubenv/sql-migrate v0.0.0-20210614095031-55d5740dbbcc
 	github.com/sirupsen/logrus v1.8.1
 	github.com/streadway/amqp v1.0.0
-	gitlab.com/s2-backend/packages v0.0.0-20210702035704-60d15cab7c3f
 	gitlab.com/s2-backend/svc-file-storage v0.0.0-20210614080636-c0635ecba10a
 	go.mongodb.org/mongo-driver v1.6.0
 	golang.org/x/crypto v0.0.0-20210711020723-a769d52b0f97
