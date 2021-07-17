@@ -2,6 +2,7 @@ package usecase
 
 import (
 	"database/sql"
+	"github.com/faizalnurrozi/phincon-browse/domain/view_models"
 	ut "github.com/go-playground/universal-translator"
 	validator "github.com/go-playground/validator/v10"
 	"github.com/gofiber/fiber/v2"
@@ -10,7 +11,6 @@ import (
 	"gitlab.com/s2-backend/packages/redis"
 	"gitlab.com/s2-backend/packages/watermill"
 	svc_file_storage "gitlab.com/s2-backend/svc-file-storage/domain/protos"
-	"github.com/faizalnurrozi/phincon-browse/domain/view_models"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -47,7 +47,7 @@ func (uc Contract) SetPaginationParameter(page, limit int, order, sort string) (
 		page = 1
 	}
 	if limit <= 0 || limit > maxLimit {
-		limit = defaultLimit
+		limit = maxLimit
 	}
 	if order == "" {
 		order = defaultOrderBy

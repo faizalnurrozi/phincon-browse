@@ -22,6 +22,7 @@ require (
 	github.com/joho/godotenv v1.3.0
 	github.com/lestrrat/go-jwx v0.0.0-20210302221443-a9d01c1b7121
 	github.com/lib/pq v1.10.2
+	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/rs/xid v1.3.0
 	github.com/rubenv/sql-migrate v0.0.0-20210614095031-55d5740dbbcc
 	github.com/sirupsen/logrus v1.8.1
