@@ -2,6 +2,12 @@ package domain
 
 import (
 	"database/sql"
+	"github.com/faizalnurrozi/phincon-browse/packages/functioncaller"
+	"github.com/faizalnurrozi/phincon-browse/packages/jwe"
+	"github.com/faizalnurrozi/phincon-browse/packages/jwt"
+	"github.com/faizalnurrozi/phincon-browse/packages/logruslogger"
+	"github.com/faizalnurrozi/phincon-browse/packages/str"
+	"github.com/faizalnurrozi/phincon-browse/usecase"
 	"github.com/go-playground/locales/en"
 	"github.com/go-playground/locales/id"
 	ut "github.com/go-playground/universal-translator"
@@ -10,15 +16,7 @@ import (
 	idTranslations "github.com/go-playground/validator/v10/translations/id"
 	jwtFiber "github.com/gofiber/jwt/v2"
 	"github.com/joho/godotenv"
-	log "github.com/sirupsen/logrus"
-	"github.com/faizalnurrozi/phincon-browse/packages/functioncaller"
-	"github.com/faizalnurrozi/phincon-browse/packages/jwe"
-	"github.com/faizalnurrozi/phincon-browse/packages/jwt"
-	"github.com/faizalnurrozi/phincon-browse/packages/logruslogger"
-	db "github.com/faizalnurrozi/phincon-browse/packages/mysql"
-	"github.com/faizalnurrozi/phincon-browse/packages/str"
 	svc_file_storage "gitlab.com/s2-backend/svc-file-storage/domain/protos"
-	"github.com/faizalnurrozi/phincon-browse/usecase"
 	"google.golang.org/grpc"
 	"os"
 )
@@ -45,29 +43,6 @@ func LoadConfig() (res Config, err error) {
 	if err != nil {
 		logruslogger.Log(logruslogger.WarnLevel, err.Error(), functioncaller.PrintFuncName(), "load-env")
 	}
-
-	//setup db connection
-	dbInfo := db.Connection{
-		Host:                    os.Getenv("DB_HOST"),
-		DbName:                  os.Getenv("DB_NAME"),
-		User:                    os.Getenv("DB_USERNAME"),
-		Password:                os.Getenv("DB_PASSWORD"),
-		Port:                    os.Getenv("DB_PORT"),
-		DBMaxConnection:         str.StringToInt(os.Getenv("DB_MAX_CONNECTION")),
-		DBMAxIdleConnection:     str.StringToInt(os.Getenv("DB_MAX_IDLE_CONNECTION")),
-		DBMaxLifeTimeConnection: str.StringToInt(os.Getenv("DB_MAX_LIFETIME_CONNECTION")),
-	}
-	res.DB, err = dbInfo.DbConnect()
-	if err != nil {
-		log.Fatal(err.Error())
-	}
-
-	//grpc storage
-	res.GrpClientConn, err = grpc.Dial(os.Getenv("RPC_HOST_FILE_STORAGE"), grpc.WithInsecure())
-	if err != nil {
-		log.Fatal(err)
-	}
-	res.SvcFileStorageClient = svc_file_storage.NewFileStorageServiceClient(res.GrpClientConn)
 
 	//jwe credential
 	res.JweCredential = jwe.Credential{

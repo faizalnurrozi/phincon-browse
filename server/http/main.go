@@ -6,14 +6,14 @@ import (
 	"os"
 	"time"
 
+	"github.com/faizalnurrozi/phincon-browse/domain"
+	"github.com/faizalnurrozi/phincon-browse/server/http/bootstrap"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/gofiber/fiber/v2/middleware/recover"
 	"github.com/gofiber/fiber/v2/middleware/requestid"
 	"github.com/rs/xid"
-	"github.com/faizalnurrozi/phincon-browse/domain"
-	"github.com/faizalnurrozi/phincon-browse/server/http/bootstrap"
 )
 
 var (
@@ -30,10 +30,6 @@ func main() {
 
 	//init validator
 	domain.ValidatorInit()
-
-	//init migration //TODO: migration active mysql conflict
-	//postgresql.Migrate(config.DB)
-	//migrations.MongoMigrate(config.Mongo.MongoDB)
 
 	app := fiber.New()
 
