@@ -3,10 +3,11 @@ package v1
 import (
 	"github.com/faizalnurrozi/phincon-browse/domain/usecases"
 	"github.com/faizalnurrozi/phincon-browse/domain/view_models"
-	"github.com/faizalnurrozi/phincon-browse/packages/pokeapi-go"
-	"github.com/faizalnurrozi/phincon-browse/usecase"
 	"github.com/faizalnurrozi/phincon-browse/packages/functioncaller"
 	"github.com/faizalnurrozi/phincon-browse/packages/logruslogger"
+	"github.com/faizalnurrozi/phincon-browse/packages/pokeapi-go"
+	"github.com/faizalnurrozi/phincon-browse/usecase"
+	"strconv"
 	"strings"
 )
 
@@ -44,8 +45,10 @@ func (uc ResourceUseCase) Browse(page, limit int) (res []view_models.Resource, p
 			return res, pagination, err
 		}
 
+		pokemonID, _ := strconv.Atoi(id)
+
 		res = append(res, view_models.Resource{
-			ID:      id,
+			ID:      pokemonID,
 			Name:    name,
 			Picture: pokemonPict.Sprites.FrontDefault,
 		})
@@ -55,4 +58,37 @@ func (uc ResourceUseCase) Browse(page, limit int) (res []view_models.Resource, p
 	pagination = uc.SetPaginationResponse(page, limit, totalCount)
 
 	return res, pagination, err
+}
+
+// ReadBy pokemon detail by ID
+func(uc ResourceUseCase) ReadBy(pokemonID string) (res view_models.ResourceDetail, err error){
+
+	// Get data pokemon
+	pokemon, err := pokeapi.Pokemon(pokemonID)
+	if err != nil {
+		logruslogger.Log(logruslogger.WarnLevel, err.Error(), functioncaller.PrintFuncName(), "fetch-pokeapi-resource")
+		return res, err
+	}
+
+	// Store moves data to struct
+	var moves []string
+	for _, pokemonMove := range pokemon.Moves {
+		moves = append(moves, pokemonMove.Move.Name)
+	}
+
+	// Store types data to struct
+	var types []string
+	for _, pokemonType := range pokemon.Types {
+		types = append(types, pokemonType.Type.Name)
+	}
+
+	res = view_models.ResourceDetail{
+		ID:      pokemon.ID,
+		Name:    pokemon.Name,
+		Picture: pokemon.Sprites.FrontDefault,
+		Moves:   moves,
+		Types:   types,
+	}
+
+	return res, err
 }

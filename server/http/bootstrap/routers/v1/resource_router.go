@@ -19,4 +19,5 @@ func (route ResourceRoute) RegisterRoute() {
 	// List of route
 	colorGroupRouters := route.RouteGroup.Group("/pokemon")
 	colorGroupRouters.Get("", handler.Browse)
+	colorGroupRouters.Get("/:id", handler.ReadBy)
 }
